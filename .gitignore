@@ -1,0 +1,13 @@
+# Ignore Microsoft Office temporary files
+~$*
+
+# Ignore Sassy CSS operational files
+*.css.map
+*.scssc
+
+# Ignore transpiled SCSS
+*.css
+
+# Ignore PDFs
+*.pdf
+launch.json

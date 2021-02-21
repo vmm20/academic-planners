@@ -1,0 +1,266 @@
+$accent_font: Roboto, Geneva, Tahoma, sans-serif;
+$normal_font: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+$border_thin: 1px solid black;
+$border_thick: 2px solid black;
+
+%accent_text {
+    font-family: $accent_font;
+    font-weight: bold;
+}
+
+%right_column {
+    float: right;
+    border-left: $border_thick;
+    text-align: center;
+}
+
+%left_page_header {
+    display: inline-block;
+    font-size: 20px;
+    padding: 5px;
+}
+
+* {
+    font-family: $normal_font;
+}
+
+@media print {
+    div {
+        &.page {
+            page-break-after: always;
+            page-break-inside: avoid;
+        }
+        &.dayCaption.weekend {
+            overflow: hidden;
+        }
+    }
+    body:last-child {
+        page-break-after: avoid !important;
+    }
+
+    pre {
+        display: none;
+    }
+}
+
+@media screen {
+    div {
+        &.blank.page {
+            display: none;
+        }
+        &.dayCaption.weekend {
+            overflow: hidden;
+        }
+    }
+    html {
+        background-color: rgb(22, 53, 53);
+    }
+    pre {
+        background-color: black;
+        color: white;
+        padding: 10px;
+    }
+}
+
+div {
+    &.page {
+        background-color: white;
+        padding: 20px;
+        width: 8.5in;
+        height: 11in;
+        margin: 10px 20px 10px 10px;
+        box-sizing: border-box;
+    }
+    &.date {
+        font-size: 30px;
+        width: 40px;
+        height: 34px;
+        text-align: center;
+        @extend %accent_text;
+        float: left;
+    }
+    &.day {
+        margin-bottom: 10px;
+        border-top: $border_thick;
+        border-left: $border_thick;
+        border-right: $border_thick;
+        &.weekend {
+            margin-bottom: -2px;
+        }
+        & > div {
+            display: flow-root;
+        }
+    }
+    &.dayOfWeek {
+        float: left;
+        border-right: $border_thick;
+        width: 100px;
+        &.weekend {
+            border-right: 0px solid black;
+        }
+    }
+    &.due {
+        width: 30px;
+        @extend %right_column;
+    }
+    &.completed {
+        width: 10px;
+        @extend %right_column;
+    }
+    &.dayCaption {
+        height: 50px;
+        text-align: left;
+        float: left;
+        margin-left: 20px;
+        width: 400px;
+        &.weekend {
+            max-width: 160px;
+        }
+    }
+    &.lines {
+        border-bottom: $border_thick;
+        & > div.line {
+            font-size: 18px;
+            padding-left: 5px;
+            margin-top: 0px;
+            margin-bottom: 0px;
+            height: 22px;
+            padding-top: 2px;
+        }
+        & > div.primary {
+            border-top: $border_thick;
+        }
+        & > div.secondary {
+            border-top: $border_thin;
+        }
+        &.weekend {
+            width: 100%;
+            padding: 0px;
+            & > div.line {
+                border-top: $border_thin;
+            }
+        }
+    }
+    &.cell {
+        height: 22px;
+        float: right;
+        border-bottom: 0px solid black;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 2px;
+    }
+    &.weekNumber {
+        width: 40%;
+        border-left: $border_thick;
+        border-right: $border_thick;
+        border-top: $border_thick;
+        text-align: center;
+        @extend %accent_text;
+        @extend %left_page_header;
+    }
+    &.monthHeader {
+        width: 55%;
+        text-align: right;
+        align-content: right;
+        @extend %accent_text;
+        @extend %left_page_header;
+    }
+    &.dayHeaders {
+        & > div {
+            display: inline-block;
+            padding: 10px;
+            height: 25px;
+            &:not(.date) {
+                padding-top: 15px;
+            }
+            &.date {
+                padding-top: 5px;
+                padding-bottom: 5px;
+            }
+        }
+        &.weekend {
+            border-bottom: $border_thin;
+            & > :not(.date) {
+                font-size: 15px;
+                padding-top: 10px;
+                height: 20px;
+            }
+            & > div.date {
+                font-size: 20px;
+                padding-right: 0px;
+                width: 30px;
+                padding-top: 6px;
+                padding-bottom: 0px;
+            }
+        }
+    }
+    
+    &.weekendSection {
+        width: 375px;
+        float: left;
+        display: block;
+    }
+
+    &.notes {
+        & > div.date {
+            font-size: 20px;
+            padding-right: 0px;
+            width: 30px;
+            padding-top: 6px;
+            padding-bottom: 0px;
+        }
+        &.line {
+            height: 22px;
+            width: 100%;
+            &.primary {
+                border-top: $border_thick;
+                padding-top: 2px;
+                & > div.notesDate {
+                    font-family: $accent_font;
+                    font-weight: bold;
+                    margin-right: 10px;
+                    margin-left: 5px;
+                    width: 20px;
+                    display: inline-block;
+                    text-align: center;
+                }
+            }
+            &.secondary {
+                border-top: $border_thin;
+            }
+        }
+    }
+    
+    &.notesSection {
+        float: right;
+        width: 48%;
+        margin-left: 20px;
+        border: $border_thick;
+        margin-bottom: 5px;
+    }
+    
+    &.notesHeaders {
+        padding: 10px;
+        @extend %accent_text;
+    }
+    
+    &.footer {
+        font-family: $accent_font;
+        font-size: 18px;
+        font-weight: bold;
+        padding-left: 10px;
+        padding-right: 10px;
+        width: 100%;
+        &.right {
+            text-align: right;
+            float: right;
+        }
+        &.left {
+            text-align: left;
+            float: left;
+        }
+    }
+
+
+}
+
