@@ -18,6 +18,10 @@
  sass css/planners.scss css/planners.css
  ``` 
  to generate the CSS file.  Make sure that the `sass` binary is on your PATH.  You can also use the `--watch` flag to regenerate the CSS file in real time when the SCSS file is modified.
+ ```
+  sass --watch css/planners.scss css/planners.css &
+ ```
+ The ampersand (&) is optional, but it sends the `sass` process to the background and prevents it from tying up the shell.  You will need the shell again when you start the development server.  If you prefer, you can simply open another shell tab or window instead of sending `sass` to the background.
  
 ## Running
  
